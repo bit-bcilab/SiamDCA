@@ -113,17 +113,17 @@ After building model and load weights, the program will request for the path of 
 
 There are 3 demo modes in total:
 
-(1)Path of the image sequence, like 
+1) Path of the image sequence, like 
 `F://DataBase/Benchmark/Basketball/img/`
 or
 `/home/DataBase/VOT2018/ants1/`
 
-(2) Path of the video, whose format should end with '.mp4' or '.avi', like
+2) Path of the video, whose format should end with '.mp4' or '.avi', like
 `./test_videos/bag.avi`
 or
 `E://DataBase/MyVideos/202105151049.mp4`
 
-(3)If having a webcam, 
+3) If having a webcam, 
 input nothing, directly pressing the `ENTER` key on keyboard, to test the video stream from the webcam.
 
 When running and showing,
@@ -142,7 +142,7 @@ python  train_SiamDCA.py	\
 ```
 
 By default, the code will turn on the multiprocessing option in model.fit() (a class method of the Model class in Keras API),
-and it can automatically determine whether the net gets distributed according to the number of available gpus.
+and it can automatically determine whether the model and data gets distributed according to the number of available gpus.
 
 ## Test
 We totally provide 5 test modes, including:
@@ -237,29 +237,49 @@ python evaluate/eval.py 	 \
 ## Design, train and test a new tracker
 - Step 1: Build network Model.
 
-Choose existing/design new operations and layers in `model` 
-and assemble them into a novel Siamese network,
+Choose existing/design new operations and layers in `model` and 
+assemble them into a novel Siamese network, 
 which is an instance of the Model class in Keras API. 
+
 It accepts at least two inputs: X and Z, and output the classification maps, regression maps and so on.
-Backbone, neck, head and other modules are the sub-models.
+, where backbone, neck, head and other modules are the sub-models.
+
 Then write the model settings in a yaml file and put it in `configs/New_Tracker`. 
 
 - Step 2: Build training Model.
 
 Denote the regression targets and classification labels as the Keras Input Layer.
+
 Choose or design loss functions (packaged as Keras Layer in `training\Loss`) to obtain the losses between labels and predictions of network.
-Then build the **train model** (also a Keras Model), which accepts image patches and labels at a same time and outputs multiple losses.
+
+Then build the **training Model** (also a Keras Model), which accepts image patches and labels at a same time and outputs multiple losses.
 
 - Step 3: Write training script referring to `train_SiamDCA.py`. 
 
 The data pipeline is based on Keras Sequence class.
-Choose or design label assigner and box encoder in `training\BoxEncoder`
+
+First the **Dataloader** read the training json files in `json_labels`. 
+
+It randomly chooses images to build training pairs and read the corresponding groundtruth bounding boxes.
+
+Then images are processed, including randomly cropping the search and template patch, augmenting, resizing and normalizing. 
+
+Choose or design label assigner and box encoder in `training\BoxEncoder` 
+to produce labels according to GT boxes.
+
+At last the **Generator** packs the images and corresponding labels of a mini-batch and feeds the training model.
+
+Use Keras Callbacks to save weights, modify the learning rate and observe training process. 
+
+Set all the parameters in a yaml file and also put it in `configs/New_Tracker`.
 
 - Step 4: Training and evaluating.
 
 Run training scripts. Choose a checkpoint in `logs/New_Tracker_ver2`.
+
 Set tracking configs and put the yaml files in `experiments/New_Tracker`.
-Then run `evaluate/test_DCA.py` to produce results txt files in `results` and calculate `evaluate/eval.py` to get final performance.
+
+Then run `evaluate/test_DCA.py` to generate results txt files in `results` and use `evaluate/eval.py` to calculate final performance.
 
 
 ## License
