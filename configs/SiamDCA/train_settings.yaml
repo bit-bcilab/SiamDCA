@@ -1,0 +1,179 @@
+ENCODE_SETTINGS:
+    pos_num: 16
+    neg_num: 42
+    pos_radium: 4.0
+    neg_radium: 2.0
+
+LOSS_WEIGHT:
+    pos: 0.5
+    neg: 0.5
+    iou: 0.5
+    l1: 0.025
+
+CROP_SETTINGS:
+    template:
+        context_amount: 0.5
+        keep_scale_prob: 0.75
+        min_scale: 0.9
+        max_scale: 1.1
+        crop_size_rate: 1.0
+        keep_center_prob: 0.75
+        shift_rate: 0.1
+        box_protect_rate: 0.0
+    search:
+        context_amount: 0.5
+        keep_scale_prob: 0.25
+        min_scale: 0.75
+        max_scale: 1.25
+        crop_size_rate: 2.0
+        keep_center_prob: 0.4
+        shift_rate: 0.3
+        box_protect_rate: 0.2
+    val:
+        context_amount: 0.5
+        keep_scale_prob: 1.0
+        min_scale: 1.0
+        max_scale: 1.0
+        crop_size_rate: 2.0
+        keep_center_prob: 1.0
+        shift_rate: 0.0
+        box_protect_rate: 0.0
+
+AUG_SETTINGS:
+    gray: 0.0
+    mix: 0.3
+    translation_other: 0.15
+    translation_background: 0.3
+    neg_threshold: 0.4
+    neg_pair: 0.08
+    occ_background: 0.24
+    occ_object: 0.4
+    template:
+        flip:
+            threshold: 0.0
+        rotate:
+            threshold: 0.0
+            max_angle: 0.0
+        blur:
+            threshold: 0.0
+        motion:
+            threshold: 0.0
+            max_degree: 0.0
+            max_angle: 0.0
+        erase:
+            threshold: 0.0
+        pca:
+            threshold: 0.0
+        color:
+            threshold: 0.0
+    search:
+        flip:
+            threshold: 0.05
+        rotate:
+            threshold: 0.15
+            max_angle: 15.0
+        blur:
+            threshold: 0.1
+        motion:
+            threshold: 0.2
+            max_degree: 8.0
+            max_angle: 10.0
+        erase:
+            threshold: 0.3
+        pca:
+            threshold: 0.0
+        color:
+            threshold: 0.1
+
+DATA_SETTINGS:
+    dataset_used:
+    -   DET
+    -   DET_val
+    -   COCO
+    -   COCO_val
+    -   VID
+    -   VID_val
+    -   LaSOT
+    -   GOT
+    -   GOT_val
+    DET:
+        label_path: det-train.json
+        match_range: 1
+        num_data: 333474
+        multiply: 1
+        num_val: 800
+        num_val_objects: 800
+        num_train: 8000
+        num_train_objects: 8000
+    DET_val:
+        label_path: det-val.json
+        match_range: 1
+        num_data: 18680
+        multiply: 1
+        num_val: 200
+        num_val_objects: 200
+        num_train: 1500
+        num_train_objects: 1500
+    COCO:
+        label_path: coco-train.json
+        match_range: 1
+        num_data: 117266
+        multiply: 4
+        num_val: 500
+        num_val_objects: 2000
+        num_train: 5000
+        num_train_objects: 20000
+    COCO_val:
+        label_path: coco-val.json
+        match_range: 1
+        num_data: 4952
+        multiply: 4
+        num_val: 250
+        num_val_objects: 1000
+        num_train: 500
+        num_train_objects: 2000
+    VID:
+        label_path: vid-train.json
+        match_range: all
+        num_data: 3862
+        multiply: 4
+        num_val: 0
+        num_val_objects: 0
+        num_train: 3862
+        num_train_objects: 15000
+    VID_val:
+        label_path: vid-val.json
+        match_range: all
+        num_data: 555
+        multiply: 4
+        num_val: 0
+        num_val_objects: 0
+        num_train: 555
+        num_train_objects: 2000
+    LaSOT:
+        label_path: lasot.json
+        match_range: mix
+        num_data: 1400
+        multiply: 10
+        num_val: 0
+        num_val_objects: 0
+        num_train: 1400
+        num_train_objects: 14000
+    GOT:
+        label_path: got-train.json
+        match_range: mix
+        num_data: 9335
+        multiply: 2
+        num_val: 0
+        num_val_objects: 0
+        num_train: 9335
+        num_train_objects: 18000
+    GOT_val:
+        label_path: got-val.json
+        match_range: mix
+        num_data: 180
+        multiply: 2
+        num_val: 0
+        num_val_objects: 0
+        num_train: 180
+        num_train_objects: 360

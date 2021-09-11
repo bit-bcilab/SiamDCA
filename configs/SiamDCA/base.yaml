@@ -1,0 +1,8 @@
+META_ARC: "SiamDCA"
+
+MODEL:
+    CHOICE: 2
+    NUM_FILTERS: 256
+
+TRAIN:
+    EPOCHS: 80

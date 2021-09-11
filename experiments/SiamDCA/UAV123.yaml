@@ -1,0 +1,39 @@
+
+MODE: 'UAV'
+
+WEIGHT_PATH: 'weights/SiamDCA/SiamDCA.h5'
+
+TEMPLATE_SIZE: [128, 128, 3]
+
+SEARCH_SIZE: [256, 256, 3]
+
+SCORE_SIZE: [32, 32]
+
+CROP_SETTINGS_TEMP:
+    context_amount: 0.5
+    keep_scale_prob: 1.0
+    min_scale: 1.0
+    max_scale: 1.0
+    crop_size_rate: 1.0
+    keep_center_prob: 1.0
+    shift_rate: 0.0
+    box_protect_rate: 0.0
+
+CROP_SETTINGS_SEARCH:
+    context_amount: 0.5
+    keep_scale_prob: 1.0
+    min_scale: 1.0
+    max_scale: 1.0
+    crop_size_rate: 2.0
+    keep_center_prob: 1.0
+    shift_rate: 0.0
+    box_protect_rate: 0.0
+
+CONTEXT_AMOUNT: 0.50
+
+PENALTY_K: 0.06
+
+WINDOW_INFLUENCE: 0.30
+
+SIZE_LR: 0.25
+

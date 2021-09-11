@@ -1,0 +1,39 @@
+
+MODE: 'NFS30'
+
+WEIGHT_PATH: 'weights/SiamDCA/SiamDCA.h5'
+
+TEMPLATE_SIZE: [128, 128, 3]
+
+SEARCH_SIZE: [320, 320, 3]
+
+SCORE_SIZE: [40, 40]
+
+CROP_SETTINGS_TEMP:
+    context_amount: 0.5
+    keep_scale_prob: 1.0
+    min_scale: 1.0
+    max_scale: 1.0
+    crop_size_rate: 1.0
+    keep_center_prob: 1.0
+    shift_rate: 0.0
+    box_protect_rate: 0.0
+
+CROP_SETTINGS_SEARCH:
+    context_amount: 0.5
+    keep_scale_prob: 1.0
+    min_scale: 1.0
+    max_scale: 1.0
+    crop_size_rate: 2.5
+    keep_center_prob: 1.0
+    shift_rate: 0.0
+    box_protect_rate: 0.0
+
+CONTEXT_AMOUNT: 0.51
+
+PENALTY_K: 0.04
+
+WINDOW_INFLUENCE: 0.35
+
+SIZE_LR: 0.40
+
