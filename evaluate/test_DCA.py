@@ -44,10 +44,11 @@ def search(tracker, dataset, configs):
     test_num = len(configs)
     for n in range(test_num):
         i, j, k, l, m = configs[n]
-        cfg.context_amount = i
-        cfg.penalty_k = j
-        cfg.window_influence = k
-        cfg.size_lr = l
+        track_cfg = Config()
+        track_cfg.context_amount = i
+        track_cfg.penalty_k = j
+        track_cfg.window_influence = k
+        track_cfg.size_lr = l
         name = '%.2f-%.2f-%.2f-%.2f' % (i, j, k, l)
         test_all(tracker, name, track_cfg, dataset)
 

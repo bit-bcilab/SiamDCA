@@ -87,16 +87,16 @@ def test(tracker, name, track_cfg, dataset, test_video='', save=True, visual=Fal
                 v_idx + 1, video.name, toc, idx / toc, lost_number))
             total_lost += lost_number
 
-            if visual and dataset.name != 'VOT2018-LT':
-                tracker_traj = np.array(pred_bboxes[1:])
-                gt_traj = np.array(video.gt_traj)
-                n_frame = len(gt_traj)
-                a_o = success_overlap(gt_traj[1:, :], tracker_traj, n_frame)
-                thresholds = np.arange(0, 51, 1)
-                gt_center = convert_bb_to_center(gt_traj)
-                tracker_center = convert_bb_to_center(tracker_traj)
-                a_p = success_error(gt_center[1:, :], tracker_center, thresholds, n_frame)
-                print("precision: %.4f, AUC: %.4f" % (a_p[20], np.mean(a_o)))
+            # if visual and dataset.name != 'VOT2018-LT':
+            #     tracker_traj = np.array(pred_bboxes[1:])
+            #     gt_traj = np.array(video.gt_traj)
+            #     n_frame = len(gt_traj)
+            #     a_o = success_overlap(gt_traj[1:, :], tracker_traj, n_frame)
+            #     thresholds = np.arange(0, 51, 1)
+            #     gt_center = convert_bb_to_center(gt_traj)
+            #     tracker_center = convert_bb_to_center(tracker_traj)
+            #     a_p = success_error(gt_center[1:, :], tracker_center, thresholds, n_frame)
+            #     print("precision: %.4f, AUC: %.4f" % (a_p[20], np.mean(a_o)))
 
             if save:
                 # save results

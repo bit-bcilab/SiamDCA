@@ -12,7 +12,7 @@ from os import listdir
 from glob import glob
 import argparse
 
-from toolkit.datasets import OTBDataset, UAVDataset, LaSOTDataset, VOTDataset, NFSDataset, VOTLTDataset, GOT10kDataset
+from toolkit.datasets import OTBDataset, UAVDataset, LaSOTDataset, VOTDataset, NFSDataset, VOTLTDataset
 from toolkit.evaluation import OPEBenchmark, AccuracyRobustnessBenchmark, EAOBenchmark, F1Benchmark
 from toolkit.visualization import draw_f1, draw_eao, draw_success_precision
 from configs.DataPath import TEST_PATH, SYSTEM
